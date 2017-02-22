@@ -22,9 +22,17 @@ class ChatScreen extends React.Component {
     this.state = {
       text: '',
       selectedTab: 2,
-      dataSource: ds.cloneWithRows(['Autolinee Toscane ', 'Greenline Tour', 'EuroLines', 'Ias Autolienee', 'Trotta', 'RealiTour']),
+      dataSource: ds.cloneWithRows([
+            { "name": "Autolinee Toscane", "status": "online", "location": "Fl, Toscana" },
+            { "name": "Greenline Tour", "status": "offline", "location": "RM, Lazio"},
+            { "name": "EuroLines", "status": "offline", "location": "MI.Lombardia" },
+            { "name": "Ias Autolienee", "status": "online", "location": "CS, Calabria" },
+            { "name": "Trotta", "status": "online", "location": "RM,Lazio" },
+            { "name": "RealiTour", "status": "online", "location": "RM,Lazio" }
+        ]),
     };
   }
+
 
   handleButtonPress = (tabNumber) => {
     this.setState({ selectedTab: tabNumber});
@@ -140,17 +148,24 @@ class ChatScreen extends React.Component {
               </View>
               <ListView
                 dataSource={this.state.dataSource}
-                renderRow={(rowData) => <TouchableOpacity style={styles.searchButton} >
+                renderRow={(rowData,index) => <TouchableOpacity style={styles.searchButton} >
                 <View style={{flexDirection: 'row', height: 100, padding: 20}}>
-                  <View style={{flex: 0.2}}>
+                  <View style={{flex: 0.2, flexDirection: 'row'}}>
+                    <View style={{flex: 0.1}}>
                     <Image
-                    style={{width: 50, height: 50}}
+                    style={{width: 50, height: 50, borderRadius: 25, borderColor:'white', borderWidth:1}}
                     source={require('./assets/profile.jpg')}
-                    />
+                    >
+                    </Image>
+                    </View>
+                    <View style={{flex:0.1, paddingTop:10, paddingRight:50}}>
+                      <View style={rowData.status==='online'?styles.onLine:styles.offLine}>
+                      </View>
+                    </View>
                   </View>
                 <View style={{flex: 0.8, paddingLeft:10}}>
-                  <Text style={styles.mainTitle}>{rowData}</Text>
-                  <Text style={styles.subTitle}>Fl, Toscana</Text>
+                  <Text style={styles.mainTitle}>{rowData.name}</Text>
+                  <Text style={styles.subTitle}>{rowData.location}</Text>
                 </View>
                 </View>
                 </TouchableOpacity>}

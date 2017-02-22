@@ -1,8 +1,10 @@
 import React, {
-  StyleSheet
+  StyleSheet,
+  Dimensions,
 } from 'react-native';
 
 
+const {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1
@@ -16,6 +18,11 @@ const styles = StyleSheet.create({
     backgroundColor:'#1D57A9',
     borderBottomWidth:1,
     borderBottomColor:'gray'
+  },
+  notificationCount: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 10
   },
   title: {
     flex: 1,
@@ -70,21 +77,27 @@ const styles = StyleSheet.create({
     marginTop: -10,
     marginBottom: 10
   },
-  notificationBox: {
-    marginLeft: 5,
-    marginTop: -12,
-    height: 15,
-    width: 15,
-    backgroundColor: '#e53935',
-    borderRadius: 7.5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative'
+  onLine: {
+    marginLeft: 32,
+    marginTop: 1,
+    height: 10,
+    width: 10,
+    backgroundColor: '#00E676',
+    borderRadius: 5,
+    borderColor:'white',
+    borderWidth:2,
+    position:'absolute'
   },
-  notificationCount: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 10
+  offLine: {
+    marginLeft: 32,
+    marginTop: 1,
+    height: 10,
+    width: 10,
+    backgroundColor: '#CCCCCC',
+    borderRadius: 5,
+    borderColor:'white',
+    borderWidth:2,
+    position:'absolute'
   },
   inactive: {
     flex: 0.25,
